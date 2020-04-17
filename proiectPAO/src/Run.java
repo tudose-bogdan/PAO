@@ -1,13 +1,21 @@
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-public class Run {
-    
-   public static void main(String args[])
-    {
 
-        Station.numar_statii = 0;
+public class Run {
+
+    public static void main(String args[]) throws IOException {
+
 
         InfoPoint info = new InfoPoint();
+
+        IO io = IO.getInstance();
+
+        info.adauga_statii(io.read());
+
+        Station.numar_statii = 0;
 
         Scanner  s = new Scanner(System.in);
 
@@ -38,16 +46,22 @@ public class Run {
                     switch(secondary_option){
 
                         case 1: {
-
-                            Station st = new UrbanStation(s.next().concat(s.nextLine()), s.nextInt());
+                            System.out.println("Introduceti o strada (string) si sectorul strazii\n");
+                            String wr = s.next().concat(s.nextLine());
+                            int g = s.nextInt();
+                            IO.write(wr,g);
+                            Station st = new UrbanStation(wr,g);
 
                             info.adauga_statie(st);
                             break;
                         }
 
                         case 2:{
-
-                            Station st = new RuralStation(s.next().concat(s.nextLine()), s.nextInt());
+                            System.out.println("Introduceti o strada (string) si sectorul strazii\n");
+                            String wr = s.next().concat(s.nextLine());
+                            int g = s.nextInt();
+                            IO.write(wr,g);
+                            Station st = new RuralStation(wr,g);
 
                             info.adauga_statie(st);
                             break;
@@ -84,7 +98,7 @@ public class Run {
                 }
 
                 case 4:{
-                    System.out.println("Introduceti numarul statie care va fi stersa: ");
+                    System.out.println("Introduceti numarul statiei care va fi stersa: ");
                     int no = s.nextInt();
 
                     info.sterge_statie_dupa_numar(no);

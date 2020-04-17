@@ -15,6 +15,14 @@ public class InfoPoint {
         l.add(s);
     }
 
+    public void adauga_statii(List<Station> li)
+    {
+        for (Station e:li)
+        {
+            l.add(e);
+        }
+    }
+
     public boolean adauga_autobuz(int no, int no2)
     {
     //param 1: codul autobuzului paran2: numarul statiei
