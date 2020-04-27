@@ -1,10 +1,10 @@
-public class statieCapatUrban extends Station {
+public class StatieCapatUrban extends Station {
 
-    public statieCapatUrban(String a, int i1) {
+    public StatieCapatUrban(String a, int i1) {
         super(a,i1);
     }
 
-    public statieCapatUrban(){
+    public StatieCapatUrban(){
         super();
     }
 

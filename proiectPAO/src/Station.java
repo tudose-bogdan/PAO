@@ -2,37 +2,37 @@ import java.util.ArrayList;
 
 public abstract class Station {
 
-    static int numar_statii;
+    static int numarStatii;
     protected String strada;
     protected int nr,sector;
-    protected int indice_vec;
+    protected int indiceVec;
     public ArrayList<Integer> autobuze;
 
     public Station(){
-        numar_statii += 1;
+        numarStatii += 1;
         strada = null;
-        nr = numar_statii;
+        nr = numarStatii;
         sector = 0;
-        indice_vec = 0;
+        indiceVec = 0;
         autobuze = new ArrayList<>();
     }
 
     public Station(String s,int se) {
-        numar_statii += 1;
+        numarStatii += 1;
         strada = s;
-        nr = numar_statii;
+        nr = numarStatii;
         sector = se;
-        indice_vec = 0;
+        indiceVec = 0;
         autobuze = new ArrayList<>();
     }
 
 
-    public void adauga_autobuz(int cod){
+    public void adaugaAutobuz(int cod){
 
         autobuze.add(cod);
     }
 
-    public boolean contine_autobuz(int cod)
+    public boolean contineAutobuz(int cod)
     {
         boolean contains = autobuze.contains(cod);
         return contains;
@@ -49,7 +49,7 @@ public abstract class Station {
 
     }
 
-    public int get_nr(){return nr;}
+    public int getNr(){return nr;}
     abstract boolean type();
 
 

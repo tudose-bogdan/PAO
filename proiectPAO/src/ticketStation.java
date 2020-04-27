@@ -1,2 +1,2 @@
-public class ticketStation {
+public class TicketStation {
 }

@@ -13,9 +13,9 @@ public class Run {
 
         IO io = IO.getInstance();
 
-        info.adauga_statii(io.read());
+        info.adaugaStatii(io.read());
 
-        Station.numar_statii = 0;
+        Station.numarStatii = 0;
 
         Scanner  s = new Scanner(System.in);
 
@@ -30,6 +30,8 @@ public class Run {
             System.out.println("7) Prin ce statii trece autobuzul X?");
             System.out.println("8) Cu ce ajung din statia X in statia Y?");
             System.out.println("9) Numarul de statii: ");
+            System.out.println("10) Adauga controlor: "); // to do
+            System.out.println("11) Adauga statie de tichete: "); //to do
             System.out.println("10) Exit");
 
             option = s.nextShort();
@@ -52,7 +54,7 @@ public class Run {
                             IO.write(wr,g);
                             Station st = new UrbanStation(wr,g);
 
-                            info.adauga_statie(st);
+                            info.adaugaStatie(st);
                             break;
                         }
 
@@ -63,7 +65,7 @@ public class Run {
                             IO.write(wr,g);
                             Station st = new RuralStation(wr,g);
 
-                            info.adauga_statie(st);
+                            info.adaugaStatie(st);
                             break;
 
                         }
@@ -77,7 +79,7 @@ public class Run {
 
                 case 2:{
 
-                    info.afiseaza_statii();
+                    info.afiseazaStatii();
 
 
                     //END CASE 2
@@ -91,7 +93,7 @@ public class Run {
                     System.out.println("Introduceti codul statiei unde sa fie inserat: ");
                     int no2 = s.nextInt();
 
-                    info.adauga_autobuz(no,no2);
+                    info.adaugaAutobuz(no,no2);
 
                     //END CASE 3
                     break;
@@ -101,7 +103,7 @@ public class Run {
                     System.out.println("Introduceti numarul statiei care va fi stersa: ");
                     int no = s.nextInt();
 
-                    info.sterge_statie_dupa_numar(no);
+                    info.stergeStatieDupaNumar(no);
 
                     //END CASE 4
                     break;
@@ -110,7 +112,7 @@ public class Run {
                 case 5:{
                     System.out.println("Introduceti numarul autobuzului");
                     int no = s.nextInt();
-                    info.sterge_autobuz(no);
+                    info.stergeAutobuz(no);
 
                     //END CASE 6
                     break;
@@ -121,7 +123,7 @@ public class Run {
                     System.out.println("Introduceti numarul statiei: ");
                     int nr = s.nextInt();
 
-                    info.cu_ce_ajung(nr);
+                    info.cuCeAjung(nr);
 
                     //END CASE 6
                     break;
@@ -131,7 +133,7 @@ public class Run {
 
                     System.out.println("Introduceti numarul autobuzului: ");
                     int nr = s.nextInt();
-                    info.prin_ce_statii_x(nr);
+                    info.prinCeStatiiX(nr);
 
                     //END CASE 7
                     break;
@@ -142,14 +144,14 @@ public class Run {
                     int n1 = s.nextInt();
                     int n2 = s.nextInt();
 
-                    info.autobuze_comune(n1,n2);
+                    info.autobuzeComune(n1,n2);
 
                     //END CASE 8
                     break;
                 }
 
                 case 9:{
-                    System.out.println(Station.numar_statii);
+                    System.out.println(Station.numarStatii);
                 }
 
         //END SWITCH

@@ -1,2 +1,2 @@
-public class controlorSTB {
+public class ControlorSTB {
 }

@@ -6,16 +6,16 @@ public class InfoPoint {
     private List<Station> l = new ArrayList<Station>();
 
 
-    public int nr_statii(){
+    public int nrStatii(){
         return l.size();
     }
 
-    public void adauga_statie(Station s)
+    public void adaugaStatie(Station s)
     {
         l.add(s);
     }
 
-    public void adauga_statii(List<Station> li)
+    public void adaugaStatii(List<Station> li)
     {
         for (Station e:li)
         {
@@ -23,15 +23,15 @@ public class InfoPoint {
         }
     }
 
-    public boolean adauga_autobuz(int no, int no2)
+    public boolean adaugaAutobuz(int no, int no2)
     {
     //param 1: codul autobuzului paran2: numarul statiei
         int cod_autobuz = no;
 
         for(Station s:l)
         {
-            if( s.get_nr() == no2) {
-                s.adauga_autobuz(no);
+            if( s.getNr() == no2) {
+                s.adaugaAutobuz(no);
                 return true;
             }
 
@@ -40,26 +40,26 @@ public class InfoPoint {
 
     }
 
-    public void afiseaza_statii()
+    public void afiseazaStatii()
     {
         for(Station s:l)
             s.display();
     }
 
-    public void sterge_statie_dupa_numar(int nr)
+    public void stergeStatieDupaNumar(int nr)
     {
         int i = 0;
 
         for(;i<l.size();i++)
         {
-            if(l.get(i).get_nr() == nr)
+            if(l.get(i).getNr() == nr)
                 break;
         }
 
         l.remove(i);
     }
 
-    public void sterge_autobuz(int no)
+    public void stergeAutobuz(int no)
     {
         int index = 0;
 
@@ -81,11 +81,11 @@ public class InfoPoint {
         }
     }
 
-    public void cu_ce_ajung(int nr)
+    public void cuCeAjung(int nr)
     {
         for(Station s:l)
         {
-            if(s.get_nr() == nr)
+            if(s.getNr() == nr)
             {
                for(int a:s.autobuze)
                    System.out.print(a + " ");
@@ -94,28 +94,28 @@ public class InfoPoint {
         System.out.println();
     }
 
-    public void prin_ce_statii_x(int x)
+    public void prinCeStatiiX(int x)
     {
         for(Station s:l)
         {
-            if(s.contine_autobuz(x))
+            if(s.contineAutobuz(x))
                 s.display();
         }
     }
 
-    public Station get_station_by_id(int id)
+    public Station getStationById(int id)
     {
         for(Station s:l)
         {
-            if(s.get_nr() ==id)
+            if(s.getNr() ==id)
                 return s;
         }
         return null;
     }
-    public void autobuze_comune(int x, int y)
+    public void autobuzeComune(int x, int y)
     {
-        Station s1 = get_station_by_id(x);
-        Station s2 = get_station_by_id(y);
+        Station s1 = getStationById(x);
+        Station s2 = getStationById(y);
 
         for(int a:s1.autobuze)
             for(int b:s2.autobuze)
