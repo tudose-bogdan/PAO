@@ -20,6 +20,7 @@ public class InfoPoint {
         for (Station e:li)
         {
             l.add(e);
+
         }
     }
 

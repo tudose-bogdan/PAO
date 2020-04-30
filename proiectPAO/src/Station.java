@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public abstract class Station {
@@ -7,6 +8,7 @@ public abstract class Station {
     protected int nr,sector;
     protected int indiceVec;
     public ArrayList<Integer> autobuze;
+    public ArrayList<ControlorSTB> controlori;
 
     public Station(){
         numarStatii += 1;
@@ -48,7 +50,16 @@ public abstract class Station {
 
 
     }
+    public static void increment()
+    {
+        numarStatii += 1;
+    }
 
+    public void adaugaControlor(ControlorSTB controlor)
+    {
+        controlori.add(controlor);
+
+    }
     public int getNr(){return nr;}
     abstract boolean type();
 

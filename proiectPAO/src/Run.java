@@ -10,12 +10,12 @@ public class Run {
 
 
         InfoPoint info = new InfoPoint();
+        Station.numarStatii = 0;
+
 
         IO io = IO.getInstance();
 
-        info.adaugaStatii(io.read());
-
-        Station.numarStatii = 0;
+        info.adaugaStatii(io.readStations());
 
         Scanner  s = new Scanner(System.in);
 
@@ -30,9 +30,9 @@ public class Run {
             System.out.println("7) Prin ce statii trece autobuzul X?");
             System.out.println("8) Cu ce ajung din statia X in statia Y?");
             System.out.println("9) Numarul de statii: ");
-            System.out.println("10) Adauga controlor: "); // to do
+            System.out.println("10) Adauga controlor: ");
             System.out.println("11) Adauga statie de tichete: "); //to do
-            System.out.println("10) Exit");
+            System.out.println("12) Exit");
 
             option = s.nextShort();
 
@@ -51,7 +51,7 @@ public class Run {
                             System.out.println("Introduceti o strada (string) si sectorul strazii\n");
                             String wr = s.next().concat(s.nextLine());
                             int g = s.nextInt();
-                            IO.write(wr,g);
+                            IO.writeStations(wr,g);
                             Station st = new UrbanStation(wr,g);
 
                             info.adaugaStatie(st);
@@ -62,7 +62,7 @@ public class Run {
                             System.out.println("Introduceti o strada (string) si sectorul strazii\n");
                             String wr = s.next().concat(s.nextLine());
                             int g = s.nextInt();
-                            IO.write(wr,g);
+                            IO.writeStations(wr,g);
                             Station st = new RuralStation(wr,g);
 
                             info.adaugaStatie(st);
@@ -92,7 +92,7 @@ public class Run {
                     int no = s.nextInt();
                     System.out.println("Introduceti codul statiei unde sa fie inserat: ");
                     int no2 = s.nextInt();
-
+                    IO.writeBuses(no,no2);
                     info.adaugaAutobuz(no,no2);
 
                     //END CASE 3
@@ -152,12 +152,24 @@ public class Run {
 
                 case 9:{
                     System.out.println(Station.numarStatii);
+                    //END CASE 9
+                    break;
                 }
+
+                case 10:{
+                    System.out.println("Introduceti codul statiei: ");
+                    int n = s.nextInt();
+                    Station c = info.getStationById(n);
+                    c.adaugaControlor(new ControlorSTB(n,0));
+                    //END CASE 10
+                    break;
+                }
+
 
         //END SWITCH
             }
 
             //END WHILE
-        }while(option!=10);
+        }while(option!=12);
     }
 }

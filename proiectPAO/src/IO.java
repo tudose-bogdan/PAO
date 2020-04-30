@@ -14,10 +14,12 @@ public class IO {
         return io;
     }
 
-    public static String csvFile = "test.csv";
+    public static String csvFile = "stations.csv";
+    public static String csvFile2 = "buses.csv";
 
 
-    public static void write(String s, int g) throws IOException {
+
+    public static void writeStations(String s, int g) throws IOException {
 
         FileWriter out = new FileWriter(csvFile,true);
 
@@ -25,12 +27,27 @@ public class IO {
         out.append(o);
         out.append("\n");
 
-
         out.flush();
         out.close();
     }
+    public static void writeBuses(int autobuz, int numar_statie) throws IOException {
 
-    public static List<Station> read() {
+        FileWriter out = new FileWriter(csvFile2,true);
+
+        String o = numar_statie + "," + autobuz;
+        out.append(o);
+        out.append("\n");
+
+        out.flush();
+        out.close();
+
+    }
+
+    public static void readBuses(){
+        //to do
+        
+    }
+    public static List<Station> readStations() {
 
         BufferedReader br = null;
         String split = ",";
