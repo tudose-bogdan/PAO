@@ -43,11 +43,28 @@ public class IO {
 
     }
 
-    public static void readBuses(){
-        //to do
-        
+    public static void readBuses(InfoPoint I) {
+        BufferedReader br = null;
+        String split = ",";
+        String line = "";
+
+        try {
+            br = new BufferedReader(new FileReader(csvFile2));
+
+            while ((line = br.readLine()) != null) {
+
+                String[] info = line.split(split);
+
+                I.adaugaAutobuz(Integer.parseInt(info[1]), Integer.parseInt(info[0]));
+
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public static List<Station> readStations() {
+        public static List<Station> readStations() {
 
         BufferedReader br = null;
         String split = ",";

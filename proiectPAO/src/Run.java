@@ -14,8 +14,11 @@ public class Run {
 
 
         IO io = IO.getInstance();
+        Audit log = Audit.getInstance();
 
         info.adaugaStatii(io.readStations());
+
+        io.readBuses(info);
 
         Scanner  s = new Scanner(System.in);
 
@@ -39,6 +42,8 @@ public class Run {
             switch(option){
 
                 case 1:{
+                    log.logEvent(ActiuniLog.ADAUGASTATII);
+
                     System.out.println("1) Statie rurala");
                     System.out.println("2) Statie urbana");
 
@@ -78,6 +83,7 @@ public class Run {
                 }
 
                 case 2:{
+                    log.logEvent(ActiuniLog.AFISEAZASTATII);
 
                     info.afiseazaStatii();
 
@@ -88,6 +94,7 @@ public class Run {
 
 
                 case 3:{
+                    log.logEvent(ActiuniLog.ADAUGAAUTOBUZ);
                     System.out.println("Introduceti numarul autobuzului: ");
                     int no = s.nextInt();
                     System.out.println("Introduceti codul statiei unde sa fie inserat: ");
@@ -100,6 +107,7 @@ public class Run {
                 }
 
                 case 4:{
+                    log.logEvent(ActiuniLog.STERGESTATIE);
                     System.out.println("Introduceti numarul statiei care va fi stersa: ");
                     int no = s.nextInt();
 
@@ -110,6 +118,7 @@ public class Run {
                 }
 
                 case 5:{
+                    log.logEvent(ActiuniLog.STERGEAUTOBUZ);
                     System.out.println("Introduceti numarul autobuzului");
                     int no = s.nextInt();
                     info.stergeAutobuz(no);
@@ -119,7 +128,7 @@ public class Run {
                 }
 
                 case 6:{
-
+                    log.logEvent(ActiuniLog.CUCEAJUNGINSTATIAX);
                     System.out.println("Introduceti numarul statiei: ");
                     int nr = s.nextInt();
 
@@ -130,7 +139,7 @@ public class Run {
                 }
 
                 case 7:{
-
+                    log.logEvent(ActiuniLog.PRINCESTATIIX);
                     System.out.println("Introduceti numarul autobuzului: ");
                     int nr = s.nextInt();
                     info.prinCeStatiiX(nr);
@@ -140,6 +149,7 @@ public class Run {
                 }
 
                 case 8:{
+                    log.logEvent(ActiuniLog.DRUMXY);
                     System.out.println("Introduceti doua coduri de statii: ");
                     int n1 = s.nextInt();
                     int n2 = s.nextInt();
@@ -151,12 +161,14 @@ public class Run {
                 }
 
                 case 9:{
+                    log.logEvent(ActiuniLog.NUMARDESTATII);
                     System.out.println(Station.numarStatii);
                     //END CASE 9
                     break;
                 }
 
                 case 10:{
+                    log.logEvent(ActiuniLog.ADAUGACONTROLOR);
                     System.out.println("Introduceti codul statiei: ");
                     int n = s.nextInt();
                     Station c = info.getStationById(n);
