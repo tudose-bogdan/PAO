@@ -1,5 +1,6 @@
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Database {
@@ -22,6 +23,61 @@ public class Database {
         repoHelper.executeSql(dbCon,createStation);
         repoHelper.executeSql(dbCon,createTicket);
     }
+
+    public void loadBus() throws SQLException {
+        String query = "SELECT station_id, nr FROM autobuz";
+        RepoHelper repoHelper = RepoHelper.getRepoHelper();
+        Connection dbCon = DataController.getDatabaseConnection();
+        ResultSet rs = repoHelper.executeQuerySql(dbCon,query);
+        while(rs.next()){
+            int n = rs.getInt("station_id");
+            int n1 = rs.getInt("nr");
+            System.out.println(n + "  " + n1 + "\n");
+        }
+
+
+
+    }
+
+    public void loadControl() throws SQLException {
+        String query = "SELECT station_id, nr_am FROM control";
+        RepoHelper repoHelper = RepoHelper.getRepoHelper();
+        Connection dbCon = DataController.getDatabaseConnection();
+        ResultSet rs = repoHelper.executeQuerySql(dbCon,query);
+        while(rs.next()){
+            int n = rs.getInt("station_id");
+            int n1 = rs.getInt("nr_am");
+            System.out.println(n + "  " + n1 + "\n");
+        }
+
+    }
+
+    public void loadStation() throws SQLException {
+        String query = "SELECT nume, nr FROM statie";
+        RepoHelper repoHelper = RepoHelper.getRepoHelper();
+        Connection dbCon = DataController.getDatabaseConnection();
+        ResultSet rs = repoHelper.executeQuerySql(dbCon,query);
+        while(rs.next()){
+            String n = rs.getString("nume");
+            int n1 = rs.getInt("nr");
+            System.out.println(n + "  " + Integer.toString(n1) + "\n");
+        }
+
+    }
+
+    public void loadBilet() throws SQLException {
+        String query = "SELECT nr FROM bilet";
+        RepoHelper repoHelper = RepoHelper.getRepoHelper();
+        Connection dbCon = DataController.getDatabaseConnection();
+        ResultSet rs = repoHelper.executeQuerySql(dbCon,query);
+        while(rs.next()){
+
+            int n1 = rs.getInt("nr");
+            System.out.println(n1 + "\n");
+        }
+
+    }
+
 
     public void addBus(int a, int b) throws SQLException {
         String add = "INSERT INTO autobuz(station_id,nr) VALUES(" +

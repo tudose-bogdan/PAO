@@ -14,6 +14,10 @@ public class Run {
         //
         Database d = new Database();
         d.setUp();
+        d.loadStation();
+        d.loadBus();
+        d.loadControl();
+        d.loadControl();
         //
 
         /*
