@@ -85,6 +85,7 @@ public abstract class Station {
     public int getNr() {
         return this.nr;
     }
+    public String getStrada(){return this.strada;}
 
     abstract boolean type();
 }
