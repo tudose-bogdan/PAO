@@ -1,7 +1,9 @@
 
 import javax.xml.crypto.Data;
 import java.io.IOException;
+import java.sql.Array;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Run {
@@ -14,10 +16,31 @@ public class Run {
         //
         Database d = new Database();
         d.setUp();
-        d.loadStation();
-        d.loadBus();
-        d.loadControl();
-        d.loadControl();
+
+        //incarcare statii din baza de date
+        ArrayList<Station> sta = d.loadStation();
+        info.adaugaStatii(sta);
+
+
+        //Incarcare autobuze din baza de date
+        ArrayList<Database.BusReturn> b = d.loadBus();
+        for(Database.BusReturn x:b){
+            info.adaugaAutobuz(x.nr,x.station_id);
+        }
+
+        //incarcare controlori din baza de date
+        ArrayList<Integer> c = d.loadControl();
+        for(int x:c){
+            Station s = info.getStationById(x);
+            s.adaugaControlor(new ControlorSTB(x,0));
+        }
+
+        //incarcare tichete din baza de date
+        ArrayList<Integer> bil = d.loadBilet();
+        for(int x:bil){
+            Station s = info.getStationById(x);
+            s.activeazaTichete();
+        }
         //
 
         /*
@@ -136,16 +159,16 @@ public class Run {
                    // Audit.logEvent(ActiuniLog.ADAUGACONTROLOR);
                     System.out.println("Introduceti codul statiei: ");
                     n = s.nextInt();
-                    Station c = info.getStationById(n);
+                    Station ps = info.getStationById(n);
                     d.addControl(n,0);
                    // IO.writeCont(new ControlorSTB(n, 0));
-                    c.adaugaControlor(new ControlorSTB(n, 0));
+                    ps.adaugaControlor(new ControlorSTB(n, 0));
                     break;}
                 case 11:{
                     System.out.println("Introduceti numarul statiei: ");
                     n = s.nextInt();
-                    Station c = info.getStationById(n);
-                    c.activeazaTichete();
+                    Station psd = info.getStationById(n);
+                    psd.activeazaTichete();
                     d.addTicket(n);
                  //   IO.writeTickets(n);
 

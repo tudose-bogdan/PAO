@@ -1,9 +1,16 @@
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 
 public class Database {
+
+    class BusReturn{
+        public int nr;
+        public int station_id;
+        BusReturn(int a, int b){
+            this.nr = a;
+            this. station_id = b;
+        }
+    }
 
     public void setUp() throws SQLException {
      String createBuses = "CREATE TABLE IF NOT EXISTS autobuz" +
@@ -24,7 +31,9 @@ public class Database {
         repoHelper.executeSql(dbCon,createTicket);
     }
 
-    public void loadBus() throws SQLException {
+    public ArrayList<BusReturn> loadBus() throws SQLException {
+
+        ArrayList<BusReturn> b = new ArrayList<>();
         String query = "SELECT station_id, nr FROM autobuz";
         RepoHelper repoHelper = RepoHelper.getRepoHelper();
         Connection dbCon = DataController.getDatabaseConnection();
@@ -32,14 +41,18 @@ public class Database {
         while(rs.next()){
             int n = rs.getInt("station_id");
             int n1 = rs.getInt("nr");
-            System.out.println(n + "  " + n1 + "\n");
+            b.add(new BusReturn(n1,n));
+
         }
+
+        return b;
 
 
 
     }
 
-    public void loadControl() throws SQLException {
+    public ArrayList<Integer> loadControl() throws SQLException {
+        ArrayList<Integer> returnList = new ArrayList<>();
         String query = "SELECT station_id, nr_am FROM control";
         RepoHelper repoHelper = RepoHelper.getRepoHelper();
         Connection dbCon = DataController.getDatabaseConnection();
@@ -47,12 +60,16 @@ public class Database {
         while(rs.next()){
             int n = rs.getInt("station_id");
             int n1 = rs.getInt("nr_am");
-            System.out.println(n + "  " + n1 + "\n");
+            returnList.add(n);
+
         }
+        return returnList;
 
     }
 
-    public void loadStation() throws SQLException {
+    public ArrayList<Station> loadStation() throws SQLException {
+        ArrayList<Station> s = new ArrayList<>();
+
         String query = "SELECT nume, nr FROM statie";
         RepoHelper repoHelper = RepoHelper.getRepoHelper();
         Connection dbCon = DataController.getDatabaseConnection();
@@ -60,12 +77,14 @@ public class Database {
         while(rs.next()){
             String n = rs.getString("nume");
             int n1 = rs.getInt("nr");
-            System.out.println(n + "  " + Integer.toString(n1) + "\n");
+            UrbanStation st = new UrbanStation(n,n1);
+            s.add(st);
         }
-
+        return s;
     }
 
-    public void loadBilet() throws SQLException {
+    public ArrayList<Integer> loadBilet() throws SQLException {
+        ArrayList<Integer> returnList = new ArrayList<>();
         String query = "SELECT nr FROM bilet";
         RepoHelper repoHelper = RepoHelper.getRepoHelper();
         Connection dbCon = DataController.getDatabaseConnection();
@@ -73,8 +92,9 @@ public class Database {
         while(rs.next()){
 
             int n1 = rs.getInt("nr");
-            System.out.println(n1 + "\n");
+            returnList.add(n1);
         }
+        return returnList;
 
     }
 
